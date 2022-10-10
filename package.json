@@ -4,5 +4,10 @@
   "repository": "https://github.com/TeamWolfyta/Juvia.git",
   "author": "TeamWolfyta <me@teamwolfyta.xyz>",
   "license": "GPL-3.0-only",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "husky": "^8.0.1"
+  }
 }
