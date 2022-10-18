@@ -22,7 +22,7 @@ services:
       - --entrypoints.https.address=:${TRAEFIK_HTTPS_PORT:?}
       - --entrypoints.https.http.tls.certresolver=cloudflare
       - --entrypoints.https.http.tls.domains[0].main=${DOMAIN:?}
-      - --entrypoints.https.http.tls.domains[0].sans=*.${DOMAIN:?}
+      - --entrypoints.https.http.tls.domains[0].sans=*.${DOMAIN:?},*.*.${DOMAIN:?}
       # Certresolvers - Cloudflare
       - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
       - --certificatesresolvers.cloudflare.acme.email=${TRAEFIK_ACME_EMAIL:?}"
@@ -61,3 +61,30 @@ services:
     volumes:
       - /home/juvia/juvia/data/traefik:/data
       - /home/juvia/juvia/logs/traefik:/logs
+  # ! ---------------------
+  # ! Minio
+  # ! ---------------------
+  minio:
+    command: [server, --console-address, :9001, /data]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD?}
+      MINIO_SERVER_URL: https://minio.${DOMAIN:?}
+      MINIO_BROWSER_REDIRECT_URL: "https://console.minio.${DOMAIN}"
+    image: minio/minio:RELEASE.2022-09-07T22-25-02Z.fips
+    labels:
+      traefik.enable: true
+      traefik.http.routers.minio.entrypoints: https
+      traefik.http.routers.minio.rule: Host(`minio.${DOMAIN:?}`) || Host(`cdn.${DOMAIN:?}`)
+      traefik.http.routers.minio.service: minio
+      traefik.http.services.minio.loadbalancer.server.port: 9000
+      # Minio Console / Dashboard
+      traefik.http.routers.minio-console.entrypoints: https
+      traefik.http.routers.minio-console.rule: Host(`console.minio.${DOMAIN:?}`)
+      traefik.http.routers.minio-console.service: minio-console
+      traefik.http.services.minio-console.loadbalancer.server.port: 9001
+    networks:
+      - traefik
+    restart: on-failure
+    volumes:
+      - /home/juvia/juvia/data/minio:/data
