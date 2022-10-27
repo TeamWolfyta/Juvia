@@ -82,7 +82,7 @@ services:
   # ! Minio
   # ! ---------------------
   minio:
-    command: [server, --console-address, :9001, /data]
+    command: server --console-address :9001 /data
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:?}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD?}
