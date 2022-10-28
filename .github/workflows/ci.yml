@@ -11,19 +11,17 @@ on:
       - master
     paths:
       - docker-compose.yml
-  workflow_dispatch: {}
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Install Node
+      - uses: actions/checkout@v3
+      - name: Setup Node
         uses: actions/setup-node@v3.5.0
         with:
           node-version-file: .nvmrc
-      - name: Cache node_modules
+      - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
         env:
@@ -37,7 +35,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List state of Node modules
+        name: List the state of node modules
         continue-on-error: true
         run: npm list
       - name: Install dependencies
