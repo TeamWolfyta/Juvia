@@ -2,7 +2,8 @@ name: juvia
 version: "3.8"
 
 networks:
-  traefik: {}
+  traefik:
+    name: traefik
   
 services:
   # ! ---------------------
