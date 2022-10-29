@@ -4,7 +4,7 @@
 
 ## ❓ Why is the repo named Juvia?
 
-I wanted the name of my docker stack to be personal but still have some connection to docker. With my extreme love of Anime, I wanted to use the name of a character from one of my favorite Anime and for the connection to docker, that would be water because docker's logo is a whale, So I searched for an anime character that was somehow related to water after a long time searching I came across Juvia Lockser from Fairy Tail who specializes with water. So that's why the repo is named Juvia. Boom 💥
+When choosing the name I wanted it to be anime related while also keeping a connection to docker, I picked Juvia because she is a character from one of my favorite animes [Fairy Tale](https://myanimelist.net/anime/35972/Fairy_Tail__Final_Series) and she is a very powerful Water magic user, Docker's logo is a whale and whales need water :)
 
 ## 📝 License
 
