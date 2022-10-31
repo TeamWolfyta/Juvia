@@ -17,7 +17,7 @@
 
 ## ✨ Features
 
-- [x] Auto Deployment (Via GitHub Actions)
+- [x] Auto Deployment (Via [GitHub Actions](https://github.com/features/actions))
 - [x] Traefik V2
 - [x] Portainer
 - [x] Minio
