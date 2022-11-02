@@ -15,9 +15,9 @@
     "prettier": "^2.7.1"
   },
   "scripts": {
-    "lint": "eslint docker-compose.yml",
-    "lint:fix": "eslint docker-compose.yml --fix",
-    "format": "prettier --check docker-compose.yml",
-    "format:fix": "prettier --write docker-compose.yml"
+    "lint": "eslint docker-compose.yml --fix",
+    "lint:check": "eslint docker-compose.yml",
+    "format": "prettier --write docker-compose.yml",
+    "format:check": "prettier --check docker-compose.yml"
   }
 }

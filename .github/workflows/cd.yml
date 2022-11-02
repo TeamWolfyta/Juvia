@@ -40,10 +40,10 @@ jobs:
         run: npm list
       - name: Install dependencies
         run: npm install
-      - name: Run Prettier
-        run: npm run format
-      - name: Run ESLint
-        run: npm run lint
+      - name: Check Prettier
+        run: npm run format:check
+      - name: Check ESLint
+        run: npm run lint:check
   deploy:
     needs: lint
     runs-on: ubuntu-latest
