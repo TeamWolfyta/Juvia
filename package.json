@@ -1,6 +1,6 @@
 {
   "name": "@teamwolfya/juvia",
-  "description": "TODO",
+  "description": "The docker-compose stack that powers my VPS",
   "repository": "https://github.com/TeamWolfyta/Juvia.git",
   "author": "TeamWolfyta <me@teamwolfyta.xyz>",
   "license": "GPL-3.0-only",
