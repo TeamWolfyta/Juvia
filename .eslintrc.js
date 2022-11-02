@@ -1,1 +1,1 @@
-module.exports = { extends: ["plugin:yml/standard"] };
+module.exports = { extends: ["prettier", "plugin:yml/standard"] };
