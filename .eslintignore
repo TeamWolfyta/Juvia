@@ -1,0 +1,7 @@
+.husky
+.vscode
+node_modules
+config
+data
+logs
+media
