@@ -1,4 +1,4 @@
 module.exports = {
-  extends: ['prettier', 'plugin:yml/standard'],
+  extends: ['plugin:yml/standard', 'prettier'],
   rules: { 'yml/quotes': ['error', { prefer: 'single' }] },
 };
