@@ -13,7 +13,7 @@
 ## ✨ Features
 
 - [x] Auto Deployment (Via [GitHub Actions](https://github.com/features/actions))
-- [x] Auto Docker Image Updates (Via [Renovate](https://renovatebot.com))
+- [x] Auto version Updates (Via [Renovate](https://renovatebot.com))
 - [x] Traefik V2
 - [x] Portainer
 - [x] Minio
