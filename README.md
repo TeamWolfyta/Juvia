@@ -8,7 +8,10 @@
 </div>
 
 [![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#-contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#-contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 [![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg)](https://github.com/teamwolfyta/juvia/actions)
 
 ## ✨ Features
