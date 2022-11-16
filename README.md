@@ -34,6 +34,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://teamwolfyta.xyz/"><img src="https://avatars.githubusercontent.com/u/37040673?v=4?s=100" width="100px;" alt="TeamWolfyta"/><br /><sub><b>TeamWolfyta</b></sub></a><br /><a href="https://github.com/TeamWolfyta/@teamwolfyta/juvia/commits?author=TeamWolfyta" title="Code">💻</a> <a href="#design-TeamWolfyta" title="Design">🎨</a> <a href="https://github.com/TeamWolfyta/@teamwolfyta/juvia/commits?author=TeamWolfyta" title="Documentation">📖</a> <a href="#financial-TeamWolfyta" title="Financial">💵</a> <a href="#maintenance-TeamWolfyta" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://renovatebot.com/"><img src="https://avatars.githubusercontent.com/u/38656520?v=4?s=100" width="100px;" alt="Renovate Bot"/><br /><sub><b>Renovate Bot</b></sub></a><br /><a href="#tool-renovatebot" title="Tools">🔧</a></td>
     </tr>
   </tbody>
   <tfoot>
