@@ -19,5 +19,6 @@
     "lint:check": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
-  }
+  },
+  "packageManager": "pnpm@7.16.0"
 }
