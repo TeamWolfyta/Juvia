@@ -1,22 +1,15 @@
 <div align="center">
-  <a href="https://teamwolfyta.xyz" target="_blank" rel="nofollow">
-    <img src="./media/banner.png" width="546"/>
+  <a href="https://teamwolfyta.xyz">
+    <img src="./media/banner.png" alt="@TeamWolfyta/Juvia" width="546"/>
   </a>
-  <div>
-    <a href="https://discord.gg/eYkJdhTvvG">
-      <img src="https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white" alt="Discord server"/>
-    </a>
-    <a href="https://github.com/teamwolfyta/juvia/actions">
-      <img src="https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg" alt="Deployment Status"/>
-    </a>
-    <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-  </div>
   <p>
     <b>The docker-compose stack that powers my VPS</b>
   </p>
 </div>
+
+[![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#-contributors)
+[![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg)](https://github.com/teamwolfyta/juvia/actions)
 
 ## ✨ Features
 
