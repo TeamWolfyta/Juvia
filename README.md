@@ -16,7 +16,6 @@
 - [x] Auto version Updates (Via [Renovate](https://renovatebot.com))
 - [x] Traefik V2
 - [x] Portainer
-- [x] Minio
 
 ## ❓ Why is the repo named Juvia?
 
