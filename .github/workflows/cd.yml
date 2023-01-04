@@ -10,6 +10,7 @@ on:
       - master
     paths:
       - docker-compose.yml
+      - config
   workflow_dispatch: {}
 
 jobs:
