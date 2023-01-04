@@ -79,3 +79,22 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /home/juvia/juvia/data/portainer:/data
+  # ! ---------------------
+  # ! Registry
+  # ! ---------------------
+  registry:
+    image: registry:2
+    networks:
+      - traefik
+    restart: on-failure
+    labels:
+      traefik.enable: true
+      traefik.http.routers.registry.entrypoints: https
+      traefik.http.routers.registry.rule: Host(`registry.${DOMAIN:?}`)
+      traefik.http.services.registry.loadbalancer.server.port: 5000
+      traefik.http.routers.registry.middlewares: registry-auth@docker
+      # Middleware
+      traefik.http.middlewares.registry-auth.basicauth.users: ${REGISTRY_BASICAUTH_USERS:?}
+      traefik.http.middlewares.registry-auth.basicauth.removeHeader: true
+    volumes:
+      - /home/juvia/juvia/data/registry:/var/lib/registry
