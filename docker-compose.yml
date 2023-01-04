@@ -2,6 +2,8 @@ name: juvia
 version: '3.8'
 
 networks:
+  registry:
+    name: registry
   traefik:
     name: traefik
 
@@ -102,13 +104,12 @@ services:
     depends_on:
       - registry
     environment:
-      REGISTRY_URL: https://registry.teamwolfyta.xyz
-      REGISTRY_TITLE: ${DOMAIN:?}
-      PULL_URL: registry.${DOMAIN:?}
-      DELETE_IMAGES: true
-      SINGLE_REGISTRY: true
-    image: joxit/docker-registry-ui:2.3.3
+      ENABLE_DELETE_IMAGES: true
+      DOCKER_REGISTRY_URL: http://registry:5000
+      PUBLIC_REGISTRY_URL: https://registry.${DOMAIN:?}
+    image: klausmeyer/docker-registry-browser:1.6.0
     networks:
+      - registry
       - traefik
     restart: on-failure
     labels:
