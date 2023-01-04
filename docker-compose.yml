@@ -2,6 +2,8 @@ name: juvia
 version: '3.8'
 
 networks:
+  registry:
+    name: registry
   traefik:
     name: traefik
 
@@ -85,16 +87,30 @@ services:
   registry:
     image: registry:2
     networks:
-      - traefik
+      - registry
+    restart: on-failure
+    labels:
+      traefik.enable: false
+    volumes:
+      - /home/juvia/juvia/config/registry/config.yml:/etc/docker/registry/config.yml
+      - /home/juvia/juvia/data/registry:/var/lib/registry
+  registry-ui:
+    environment:
+      REGISTRY_URL: registry:5000
+      REGISTRY_TITLE: ${DOMAIN:?}
+      PULL_URL: registry.${DOMAIN:?}
+      DELETE_IMAGES: true
+      SINGLE_REGISTRY: true
+      NGINX_PROXY_PASS_URL: http://registry:5000
+    image: registry:2
+    networks:
+      - registry
     restart: on-failure
     labels:
       traefik.enable: true
       traefik.http.routers.registry.entrypoints: https
       traefik.http.routers.registry.rule: Host(`registry.${DOMAIN:?}`)
-      traefik.http.services.registry.loadbalancer.server.port: 5000
       traefik.http.routers.registry.middlewares: registry-auth@docker
       # Middleware
       traefik.http.middlewares.registry-auth.basicauth.users: ${REGISTRY_BASICAUTH_USERS:?}
       traefik.http.middlewares.registry-auth.basicauth.removeHeader: true
-    volumes:
-      - /home/juvia/juvia/data/registry:/var/lib/registry
