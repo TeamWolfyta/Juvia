@@ -2,7 +2,12 @@ version: 0.1
 storage:
   delete:
     enabled: true
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
 http:
+  addr: 0.0.0.0:5000
   headers:
     X-Content-Type-Options: [nosniff]
     Access-Control-Allow-Origin: ["http://localhost"]
