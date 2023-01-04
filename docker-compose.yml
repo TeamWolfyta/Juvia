@@ -2,6 +2,8 @@ name: juvia
 version: '3.8'
 
 networks:
+  # registry:
+  #   name: registry
   traefik:
     name: traefik
 
@@ -79,22 +81,42 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /home/juvia/juvia/data/portainer:/data
-  # ! ---------------------
-  # ! Registry
-  # ! ---------------------
-  registry:
-    image: registry:2
-    networks:
-      - traefik
-    restart: on-failure
-    labels:
-      traefik.enable: true
-      traefik.http.routers.registry.entrypoints: https
-      traefik.http.routers.registry.rule: Host(`registry.${DOMAIN:?}`)
-      traefik.http.routers.registry.middlewares: registry-auth@docker
-      # Middleware
-      traefik.http.middlewares.registry-auth.basicauth.users: ${REGISTRY_BASICAUTH_USERS:?}
-      traefik.http.middlewares.registry-auth.basicauth.removeHeader: true
-    volumes:
-      - /home/juvia/juvia/config/registry/config.yml:/etc/docker/registry/config.yml
-      - /home/juvia/juvia/data/registry:/var/lib/registry
+  # # ! ---------------------
+  # # ! Registry
+  # # ! ---------------------
+  # registry:
+  #   image: registry:2
+  #   networks:
+  #     - traefik
+  #   restart: on-failure
+  #   labels:
+  #     traefik.enable: true
+  #     traefik.http.routers.registry.entrypoints: https
+  #     traefik.http.routers.registry.rule: Host(`registry.${DOMAIN:?}`)
+  #     traefik.http.routers.registry.middlewares: registry-auth@docker
+  #     # Middleware
+  #     traefik.http.middlewares.registry-auth.basicauth.users: ${REGISTRY_BASICAUTH_USERS:?}
+  #     traefik.http.middlewares.registry-auth.basicauth.removeHeader: true
+  #   volumes:
+  #     - /home/juvia/juvia/config/registry/config.yml:/etc/docker/registry/config.yml
+  #     - /home/juvia/juvia/data/registry:/var/lib/registry
+  # registry-ui:
+  #   depends_on:
+  #     - registry
+  #   environment:
+  #     RAILS_RELATIVE_URL_ROOT: /dashboard
+  #     ENABLE_DELETE_IMAGES: true
+  #     DOCKER_REGISTRY_URL: http://registry:5000
+  #     PUBLIC_REGISTRY_URL: https://registry.${DOMAIN:?}
+  #   image: klausmeyer/docker-registry-browser:1.6.0
+  #   networks:
+  #     - registry
+  #     - traefik
+  #   restart: on-failure
+  #   labels:
+  #     traefik.enable: true
+  #     traefik.http.routers.registry-ui.entrypoints: https
+  #     traefik.http.routers.registry-ui.rule: (Host(`registry.${DOMAIN:?}`) && PathPrefix(`/dashboard`))
+  #     traefik.http.routers.registry-ui.middlewares: registry-auth@docker, registry-ui@docker
+  #     traefik.http.services.registry-ui.loadbalancer.server.port: 8080
+  #     traefik.http.middlewares.registry-ui.stripprefix.prefixes: /dashboard
