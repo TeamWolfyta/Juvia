@@ -95,8 +95,10 @@ services:
       - /home/juvia/juvia/config/registry/config.yml:/etc/docker/registry/config.yml
       - /home/juvia/juvia/data/registry:/var/lib/registry
   registry-ui:
+    depends_on:
+      - registry
     environment:
-      REGISTRY_URL: registry:5000
+      REGISTRY_URL: http://registry:5000
       REGISTRY_TITLE: ${DOMAIN:?}
       PULL_URL: registry.${DOMAIN:?}
       DELETE_IMAGES: true
