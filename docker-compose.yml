@@ -104,6 +104,8 @@ services:
     depends_on:
       - registry
     environment:
+      SCRIPT_NAME: /dashboard
+      RAILS_RELATIVE_URL_ROOT: /dashboard
       ENABLE_DELETE_IMAGES: true
       DOCKER_REGISTRY_URL: http://registry:5000
       PUBLIC_REGISTRY_URL: https://registry.${DOMAIN:?}
@@ -115,6 +117,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.registry-ui.entrypoints: https
-      traefik.http.routers.registry-ui.rule: (Host(`registry.${DOMAIN:?}`) && PathPrefix(`/ui`))
+      traefik.http.routers.registry-ui.rule: (Host(`registry.${DOMAIN:?}`) && PathPrefix(`/dashboard`))
       traefik.http.routers.registry-ui.middlewares: registry-auth@docker, registry-ui@docker
-      traefik.http.middlewares.registry-ui.stripprefix.prefixes: /ui
+      traefik.http.services.registry-ui.loadbalancer.server.port: 8080
+      traefik.http.middlewares.registry-ui.stripprefix.prefixes: /dashboard
