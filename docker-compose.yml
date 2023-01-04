@@ -104,6 +104,7 @@ services:
       NGINX_PROXY_PASS_URL: http://registry:5000
     image: registry:2
     networks:
+      - traefik
       - registry
     restart: on-failure
     labels:
