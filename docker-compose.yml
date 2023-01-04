@@ -102,7 +102,7 @@ services:
       DELETE_IMAGES: true
       SINGLE_REGISTRY: true
       NGINX_PROXY_PASS_URL: http://registry:5000
-    image: registry:2
+    image: joxit/docker-registry-ui:2.3.3
     networks:
       - traefik
       - registry
