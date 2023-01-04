@@ -104,7 +104,6 @@ services:
     depends_on:
       - registry
     environment:
-      SCRIPT_NAME: /dashboard
       RAILS_RELATIVE_URL_ROOT: /dashboard
       ENABLE_DELETE_IMAGES: true
       DOCKER_REGISTRY_URL: http://registry:5000
