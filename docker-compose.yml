@@ -114,5 +114,5 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.registry-ui.entrypoints: https
-      traefik.http.routers.registry-ui.rule: (Host(`registry.${DOMAIN:?}`) && PathPrefix(`/ui`))
+      traefik.http.routers.registry-ui.rule: (Host(`registry.${DOMAIN:?}`) && PathPrefix(`/ui`) && StripPrefix(`/ui`))
       traefik.http.routers.registry-ui.middlewares: registry-auth@docker
