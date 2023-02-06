@@ -69,7 +69,7 @@ services:
   # ! Portainer
   # ! ---------------------
   portainer:
-    image: portainer/portainer-ce:2.16.2
+    image: portainer/portainer-ce:2.17.0
     labels:
       traefik.enable: true
       traefik.http.routers.portainer.entrypoints: https
