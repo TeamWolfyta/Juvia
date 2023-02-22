@@ -56,9 +56,8 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## 📝 License
 
-``
-  A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works,   modifications, and larger works may be distributed under different terms and without source code.
-``
-##### Short description by choosealicense.com
+```
+A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+```
 
 This project is licensed under MIT - see the [LICENSE.txt](./LICENSE.txt) file for details
