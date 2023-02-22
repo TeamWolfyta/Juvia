@@ -5,10 +5,10 @@
   <p>
     <b>The docker-compose stack that powers my VPS</b>
   </p>
-  
+
   [![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG) <!-- ALL-CONTRIBUTORS-   BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#-contributors) <!-- ALL-        CONTRIBUTORS-BADGE:END -->
   [![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg)](https://github.com/teamwolfyta/juvia/actions)
-  
+
 </div>
 
 ## ✨ Features
@@ -52,7 +52,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 ## 📝 License
 
