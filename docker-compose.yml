@@ -69,7 +69,7 @@ services:
   portainer:
     environment:
       PORTAINER_LICENSE_KEY: ${PORTAINER_LICENSE_KEY:?}
-    image: portainer/portainer-ee:2.17.0
+    image: portainer/portainer-ee:2.17.1
     labels:
       traefik.enable: true
       traefik.http.routers.portainer.entrypoints: https
