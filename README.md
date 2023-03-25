@@ -20,7 +20,7 @@
 
 ## ❓ Why is the repo named Juvia?
 
-When choosing the name I wanted it to be anime related while also keeping a connection to docker, I picked Juvia because she is a character from one of my favorite animes [Fairy Tail](https://myanimelist.net/anime/35972/Fairy_Tail__Final_Series) and she is a very powerful Water magic user, Docker's logo is a whale and whales need water :)
+When choosing the name I wanted it to be anime related while also keeping a connection to docker, I picked Juvia because she is a character from one of my favorite animes [Fairy Tail](https://myanimelist.net/anime/35972/Fairy_Tail__Final_Series) and she is a very powerful Water magic user, Docker's logo is a whale and whales need water. 😁
 
 ## ✨ Contributors
 
