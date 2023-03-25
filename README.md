@@ -54,10 +54,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
-## 📝 License
-
-```
-A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
-```
+## 🪙 License
 
 This project is licensed under MIT - see the [LICENSE.txt](./LICENSE.txt) file for details
+
+```
+A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.  There are many variations of this license in use.
+```
+###### via [tldrlegal.com](https://www.tldrlegal.com/license/mit-license)
+
