@@ -61,5 +61,5 @@ This project is licensed under MIT - see the [LICENSE.txt](./LICENSE.txt) file f
 ```
 A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.  There are many variations of this license in use.
 ```
-###### via [tldrlegal.com](https://www.tldrlegal.com/license/mit-license)
+###### Short Description by [tldrlegal.com](https://www.tldrlegal.com/license/mit-license)
 
