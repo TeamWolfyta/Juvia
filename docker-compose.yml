@@ -10,7 +10,7 @@ services:
   # ! WhoAmI
   # ! ---------------------
   whoami:
-    image: traefik/whoami:1.9.0
+    image: traefik/whoami:v1.9.0
     labels:
       traefik.enable: true
       traefik.http.routers.whoami.entrypoints: https
