@@ -7,6 +7,18 @@ networks:
 
 services:
   # ! ---------------------
+  # ! WhoAmI
+  # ! ---------------------
+  whoami:
+    image: traefik/whoami:1.9.0
+    labels:
+      traefik.enable: true
+      traefik.http.routers.whoami.entrypoints: https
+      traefik.http.routers.whoami.rule: Host(`whoami.${DOMAIN:?}`)
+    networks:
+      - traefik
+    restart: on-failure
+  # ! ---------------------
   # ! Portainer
   # ! ---------------------
   portainer:
