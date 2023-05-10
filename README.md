@@ -13,8 +13,8 @@
 
 ## ✨ Features
 
-- [x] Auto Deployment (Via [GitHub Actions](https://github.com/features/actions))
-- [x] Auto version Updates (Via [Renovate](https://renovatebot.com))
+- [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
+- [x] Auto version updates (Via [Renovate](https://renovatebot.com))
 - [x] Traefik V2
 - [x] Portainer
 
@@ -24,7 +24,7 @@ When choosing the name I wanted it to be Anime related while also keeping a conn
 
 ## ✨ Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks go to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
