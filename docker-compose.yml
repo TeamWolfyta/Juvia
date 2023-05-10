@@ -13,8 +13,6 @@ services:
   # ! ---------------------
   crontab:
     environment:
-      PUID: 1000
-      PGID: 1000
     image: willfarrell/crontab:latest
     restart: on-failure
     volumes:
@@ -38,8 +36,6 @@ services:
   # ! ---------------------
   pgadmin:
     environment:
-      PUID: 1000
-      PGID: 1000
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:?}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?}
     image: dpage/pgadmin4:7.1
@@ -58,8 +54,6 @@ services:
   # ! ---------------------
   portainer:
     environment:
-      PUID: 1000
-      PGID: 1000
       PORTAINER_LICENSE_KEY: ${PORTAINER_LICENSE_KEY:?}
     image: portainer/portainer-ee:2.18.2
     labels:
@@ -109,8 +103,6 @@ services:
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
     environment:
-      PUID: 1000
-      PGID: 1000
       CF_API_EMAIL: ${TRAEFIK_CLOUDFLARE_API_EMAIL:?}
       CF_DNS_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
       CF_ZONE_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
