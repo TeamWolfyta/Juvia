@@ -35,8 +35,8 @@ services:
   # ! ---------------------
   pgadmin:
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:?}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-}
     image: dpage/pgadmin4:7.1
     labels:
       traefik.enable: true
