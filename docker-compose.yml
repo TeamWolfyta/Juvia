@@ -10,6 +10,9 @@ services:
   # ! Crontab
   # ! ---------------------
   crontab:
+    environment:
+      UID: 1000
+      GID: 1000
     image: willfarrell/crontab:latest
     labels:
       traefik.enable: false
@@ -36,6 +39,8 @@ services:
   # ! ---------------------
   portainer:
     environment:
+      UID: 1000
+      GID: 1000
       PORTAINER_LICENSE_KEY: ${PORTAINER_LICENSE_KEY:?}
     image: portainer/portainer-ee:2.18.2
     labels:
@@ -84,6 +89,8 @@ services:
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
     environment:
+      UID: 1000
+      GID: 1000
       CF_API_EMAIL: ${TRAEFIK_CLOUDFLARE_API_EMAIL:?}
       CF_DNS_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
       CF_ZONE_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
