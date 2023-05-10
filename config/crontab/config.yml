@@ -1,0 +1,3 @@
+prune unused docker images:
+  schedule: 0 1 * * * # Everyday at 1AM.
+  command: docker image prune
