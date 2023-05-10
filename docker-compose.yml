@@ -12,7 +12,6 @@ services:
   # ! Crontab
   # ! ---------------------
   crontab:
-    environment:
     image: willfarrell/crontab:latest
     restart: on-failure
     volumes:
