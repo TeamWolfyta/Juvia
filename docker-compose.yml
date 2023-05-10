@@ -78,7 +78,8 @@ services:
       - --certificatesresolvers.cloudflare.acme.storage=/data/acme-cloudflare.json
       - --certificatesresolvers.cloudflare.acme.caserver=${TRAEFIK_ACME_CASERVER:?}
       # Logs
-      - --log.level=INFO
+      - --log.level=WARN
+      - --log.filePath=/logs/traefik.log
       - --accesslog=true
       - --accesslog.filepath=/logs/access.log
       # Dashboard
