@@ -15,6 +15,7 @@
 
 - [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
 - [x] Auto version updates (Via [Renovate](https://renovatebot.com))
+- [x] Auto remove unused docker images (Via [Docker-Crontab](https://github.com/willfarrell/docker-crontab))
 - [x] Traefik V2
 - [x] Portainer
 
