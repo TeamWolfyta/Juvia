@@ -46,6 +46,7 @@ services:
       - pgadmin
       - traefik
     restart: on-failure
+    user: root
     volumes:
       - /home/juvia/juvia/data/pgadmin:/var/lib/pgadmin
   # ! ---------------------
