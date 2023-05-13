@@ -9,16 +9,6 @@ networks:
 
 services:
   # ! ---------------------
-  # ! Crontab
-  # ! ---------------------
-  crontab:
-    image: willfarrell/crontab:latest
-    restart: on-failure
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/juvia/juvia/config/crontab:/opt/crontab
-      - /home/juvia/juvia/logs/crontab:/var/log/crontab
-  # ! ---------------------
   # ! WhoAmI
   # ! ---------------------
   whoami:
