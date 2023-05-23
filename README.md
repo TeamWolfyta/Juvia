@@ -13,7 +13,7 @@
 
 ## ✨ Features
 
-- [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
+- [x] Auto deployment (Via [Deploybot](https://deploybot.app/) + [GitHub Actions](https://github.com/features/actions))
 - [x] Auto version updates (Via [Renovate](https://renovatebot.com))
 - [ ] Auto-remove unused docker images.
 - [x] PGAdmin
