@@ -9,6 +9,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.deployment.environment }}
     steps:
       - name: 🚧 In-progress Status update.
         uses: chrnorm/deployment-status@v2
