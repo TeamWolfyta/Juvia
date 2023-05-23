@@ -1,0 +1,51 @@
+name: CD Deploy
+
+on: deployment
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚧 In-progress Status update.
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: in_progress
+          deployment-id: ${{ github.event.deployment.id }}
+      - name: 🧰 Install SSH Key.
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: unnecessary
+      - name: 🧰 Add Host to known hosts.
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+      - name: 📦 Deploy Docker-Compose stack to ${{ github.event.deployment.environment }}.
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/juvia
+            sudo docker compose down
+            git pull
+            sudo docker compose up -d
+      - name: ✅ Success Status update.
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: success
+          deployment-id: ${{ github.event.deployment.id }}
+      - name: ❌ Failure Status update.
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: failure
+          deployment-id: ${{ github.event.deployment.id }}
