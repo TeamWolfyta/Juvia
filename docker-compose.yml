@@ -96,7 +96,7 @@ services:
       CF_API_EMAIL: ${TRAEFIK_CLOUDFLARE_API_EMAIL:?}
       CF_DNS_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
       CF_ZONE_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
-    image: traefik:v2.10.1
+    image: traefik:v2.10.3
     labels:
       traefik.enable: true
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?}`)
