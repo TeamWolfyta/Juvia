@@ -58,7 +58,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## 🪙 License
 
-This project is licensed under MIT - see the [LICENSE.txt](./LICENSE.txt) file for details
+This project is licensed under `MIT` - see the [LICENSE.txt](./LICENSE.txt) file for details
 
 ```
 A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.  There are many variations of this license in use.
