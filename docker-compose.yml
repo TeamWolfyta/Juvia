@@ -27,7 +27,7 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:?}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?}
-    image: dpage/pgadmin4:7.4
+    image: dpage/pgadmin4:7.5
     labels:
       traefik.enable: true
       traefik.http.routers.pgadmin.entrypoints: https
