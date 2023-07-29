@@ -15,5 +15,5 @@
     "all-contributors-cli": "^6.24.0",
     "husky": "^8.0.1"
   },
-  "packageManager": "pnpm@8.6.9"
+  "packageManager": "pnpm@8.6.10"
 }
