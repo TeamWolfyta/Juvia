@@ -6,14 +6,14 @@
     <b>The docker-compose stack that powers my VPS</b>
   </p>
 
-  [![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG) <!-- ALL-CONTRIBUTORS-   BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#-contributors) <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  [![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg)](https://github.com/teamwolfyta/juvia/actions)
+[![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG) <!-- ALL-CONTRIBUTORS-   BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#-contributors) <!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/CD/badge.svg)](https://github.com/teamwolfyta/juvia/actions)
 
 </div>
 
 ## ✨ Features
 
-- [x] Auto deployment (Via [Deploybot](https://deploybot.app/) + [GitHub Actions](https://github.com/features/actions))
+- [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
 - [x] Auto version updates (Via [Renovate](https://renovatebot.com))
 - [ ] Auto-remove unused docker images.
 - [x] PGAdmin
@@ -63,5 +63,5 @@ This project is licensed under `MIT` - see the [LICENSE.txt](./LICENSE.txt) file
 ```
 A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.  There are many variations of this license in use.
 ```
-###### Short Description by [tldrlegal.com](https://www.tldrlegal.com/license/mit-license)
 
+###### Short Description by [tldrlegal.com](https://www.tldrlegal.com/license/mit-license)
