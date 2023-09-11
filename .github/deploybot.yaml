@@ -1,4 +1,0 @@
-deployments:
-  - name: production
-    description: production deployment to my Contabo VPS. Thanks Contabo! <3
-    on_push: false
