@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - docker-compose.yml
+      - config/**
+  workflow_dispatch: {}
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - id: deployment
+        name: 🚧 Create GitHub deployment.
+        uses: bobheadxi/deployments@v1
+        with:
+          env: production
+          step: start
+          token: ${{ github.token }}
+      - name: 🧰 Install SSH Key.
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: unnecessary
+      - name: 🧰 Add Host to known hosts.
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+      - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/juvia
+            sudo docker compose down
+            git pull
+            sudo docker compose up -d
+      - name: 🚧 Update GitHub deployment status.
+        uses: bobheadxi/deployments@v1
+        if: always()
+        with:
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env: ${{ steps.deployment.outputs.env }}
+          status: ${{ job.status }}
+          step: finish
+          token: ${{ github.token }}
