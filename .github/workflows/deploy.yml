@@ -5,8 +5,9 @@ on:
     branches:
       - master
     paths:
-      - docker-compose.yml
       - config/**
+      - docker-compose.yml
+      - .github/workflows/deploy.yml
   workflow_dispatch: {}
 
 concurrency:
