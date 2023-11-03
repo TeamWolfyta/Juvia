@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://wolfyta.moe">
-    <img src="./media/banner.png" alt="@TeamWolfyta/Juvia" width="546"/>
+    <img src="./.github/assets/banner.png" alt="@TeamWolfyta/Juvia" width="546"/>
   </a>
   <p>
     <b>The docker-compose stack that powers my VPS</b>
