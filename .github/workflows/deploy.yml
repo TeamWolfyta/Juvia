@@ -45,9 +45,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/juvia
-            sudo docker compose down
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose down
             git pull
-            sudo docker compose up -d
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose up -d
       - name: 🚧 Update GitHub deployment status.
         uses: bobheadxi/deployments@v1
         if: always()
