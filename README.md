@@ -1,6 +1,4 @@
-<a href="https://wolfyta.moe">
-  <img src="./.github/assets/banner-01.png" alt="@TeamWolfyta/Juvia" height=300/>
-</a>
+![Juvia](./.github/assets/banner-01.png)
 
 [![GitHub Actions CD](https://github.com/teamwolfyta/juvia/workflows/Deploy/badge.svg)](https://github.com/teamwolfyta/juvia/actions) [![Discord](https://img.shields.io/discord/645356291748921377?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/eYkJdhTvvG)
 
