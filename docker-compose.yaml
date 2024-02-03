@@ -1,0 +1,9 @@
+name: juvia
+version: "3.8"
+
+include:
+  - path: ./docker-compose.networks.yaml
+  - path: ./services/pgadmin.yaml
+  - path: ./services/portainer.yaml
+  - path: ./services/traefik.yaml
+  - path: ./services/whoami.yaml
