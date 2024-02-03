@@ -12,12 +12,11 @@
 
 ## ✨ Features
 
-- [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
-- [x] Auto version updates (Via [Renovate](https://renovatebot.com))
-- [ ] Auto-remove unused docker images.
-- [x] PGAdmin
-- [x] Portainer
-- [x] Traefik V2
+- [X] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
+- [X] Auto version updates (Via [Renovate](https://renovatebot.com))
+- [X] PGAdmin
+- [X] Portainer
+- [X] Traefik V2
 
 ## ❓ Why is the repo named Juvia?
 
