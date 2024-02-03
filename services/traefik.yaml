@@ -23,6 +23,9 @@ services:
       - --certificatesresolvers.cloudflare.acme.email=${TRAEFIK_ACME_EMAIL:?}
       - --certificatesresolvers.cloudflare.acme.storage=/data/acme-cloudflare.json
       - --certificatesresolvers.cloudflare.acme.caserver=${TRAEFIK_ACME_CASERVER:?}
+      # Plugins
+      - --experimental.plugins.cloudflarewarp.modulename=github.com/BetterCorp/cloudflarewarp
+      - --experimental.plugins.cloudflarewarp.version=v1.3.3
       # Logs
       - --log.level=WARN
       - --log.filePath=/logs/traefik.log
