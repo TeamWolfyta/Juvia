@@ -31,20 +31,32 @@ jobs:
           env: production
           step: start
           token: ${{ github.token }}
+      - name: 🧰 Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+      - name: 🧰 Load SSH Credentials
+        id: load-docker-credentials
+        uses: 1password/load-secrets-action@v1
+        env:
+          SSH_HOST: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/IP
+          SSH_USER: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/username
+          SSH_PASSWORD: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/password
+          SSH_PRIVATE_KEY: op://VPS_Koneko/pm75pmefaa22s7qwdk7m5ac2f4/private key
       - name: 🧰 Install SSH Key.
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: unnecessary
       - name: 🧰 Add Host to known hosts.
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+        run: ssh-keyscan -p 22 -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          port: 22
           script: |
             cd ~/juvia
             echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose down
