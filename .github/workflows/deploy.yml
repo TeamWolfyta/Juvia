@@ -44,8 +44,6 @@ jobs:
           SSH_PRIVATE_KEY: op://VPS_Koneko/pm75pmefaa22s7qwdk7m5ac2f4/private key?ssh-format=openssh
         with:
           export-env: true
-      - name: 🧰 Flatten SSH_PRIVATE_KEY
-        run: echo "SSH_PRIVATE_KEY=$(echo -n "${{ env.SSH_PRIVATE_KEY }}" | tr -d '\n')" >> "$GITHUB_ENV"
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@v1.0.3
         with:
