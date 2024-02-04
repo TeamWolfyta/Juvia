@@ -41,7 +41,7 @@ jobs:
           SSH_HOST: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/IP
           SSH_USER: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/username
           SSH_PASSWORD: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/password
-          SSH_PRIVATE_KEY: "op://VPS_Koneko/pm75pmefaa22s7qwdk7m5ac2f4/private key"
+          SSH_PRIVATE_KEY: op://VPS_Koneko/pm75pmefaa22s7qwdk7m5ac2f4/private key?ssh-format=openssh
         with:
           export-env: true
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
