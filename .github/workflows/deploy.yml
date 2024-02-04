@@ -45,11 +45,6 @@ jobs:
           SSH_PRIVATE_KEY: op://VPS_Koneko/pm75pmefaa22s7qwdk7m5ac2f4/private key
         with:
           export-env: true
-      - name: 🧰 Install SSH Key.
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ steps.load-ssh-credentials.outputs.SSH_PRIVATE_KEY }}
-          known_hosts: unnecessary
       - name: 🧰 Add Host to known hosts.
         run: ssh-keyscan -p 22 -H ${{ steps.load-ssh-credentials.outputs.SSH_HOST }}  >> ~/.ssh/known_hosts
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
