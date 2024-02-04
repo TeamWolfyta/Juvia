@@ -6,6 +6,8 @@ services:
   cloudflared:
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN:?}
     image: cloudflare/cloudflared:2024.1.5
+    networks:
+      - cloudflared
   traefik:
     command:
       # Proivders
@@ -55,6 +57,7 @@ services:
       traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_BASICAUTH_USERS:?}
       traefik.http.middlewares.traefik-auth.basicauth.removeHeader: true
     networks:
+      - cloudflared
       - traefik
     ports:
       - ${TRAEFIK_HTTP_PORT:?}:${TRAEFIK_HTTP_PORT:?}
