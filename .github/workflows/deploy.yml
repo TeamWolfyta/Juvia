@@ -35,8 +35,7 @@ jobs:
         uses: 1password/load-secrets-action/configure@v1
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-      - id: load-ssh-credentials
-        name: 🧰 Load SSH Credentials
+      - name: 🧰 Load SSH Credentials
         uses: 1password/load-secrets-action@v1
         env:
           SSH_HOST: op://VPS_Koneko/qi25f7qawbcsemdqqikdyihpbi/IP
@@ -48,15 +47,15 @@ jobs:
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ steps.load-ssh-credentials.outputs.SSH_HOST }}
-          username: ${{ steps.load-ssh-credentials.outputs.SSH_USER }}
-          key: ${{ steps.load-ssh-credentials.outputs.SSH_PRIVATE_KEY }}
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          key: ${{ env.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             cd ~/juvia
-            echo ${{ steps.load-ssh-credentials.outputs.SSH_PASSWORD }} | sudo -kS docker compose down
+            echo ${{ env.SSH_PASSWORD }} | sudo -kS docker compose down
             git pull
-            echo ${{ steps.load-ssh-credentials.outputs.SSH_PASSWORD }} | sudo -kS docker compose up -d
+            echo ${{ env.SSH_PASSWORD }} | sudo -kS docker compose up -d
       - name: 🚧 Update GitHub deployment status.
         uses: bobheadxi/deployments@v1
         if: always()
