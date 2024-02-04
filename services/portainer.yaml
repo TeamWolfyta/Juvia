@@ -17,4 +17,4 @@ services:
     restart: on-failure
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./data/portainer:/data
+      - ../data/portainer:/data

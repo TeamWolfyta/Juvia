@@ -18,4 +18,4 @@ services:
     restart: on-failure
     user: root
     volumes:
-      - ./data/pgadmin:/var/lib/pgadmin
+      - ../data/pgadmin:/var/lib/pgadmin
