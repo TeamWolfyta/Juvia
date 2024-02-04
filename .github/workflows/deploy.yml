@@ -45,11 +45,11 @@ jobs:
         with:
           export-env: true
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ env.SSH_HOST }}
           username: ${{ env.SSH_USER }}
-          key: ${{ env.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             cd ~/juvia
