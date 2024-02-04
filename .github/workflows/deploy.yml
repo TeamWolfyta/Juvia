@@ -47,7 +47,7 @@ jobs:
       - name: Export the secret to a file FOR TESTING
         run: echo ${{ env.SSH_PRIVATE_KEY }} >> secrets.txt
       - name: Run tmate FOR TESTING
-        uses: mxschmitt/action-tmate@v2
+        uses: mxschmitt/action-tmate@v3
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@v1.0.3
         with:
