@@ -34,15 +34,15 @@ jobs:
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ env.SSH_HOST }}
-          username: ${{ env.SSH_USER }}
-          key: ${{ env.SSH_PRIVATE_KEY }}
-          port: ${{ env.SSH_PORT }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/juvia
-            echo ${{ env.SSH_PASSWORD }} | sudo -kS docker compose down
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose down
             git pull
-            echo ${{ env.SSH_PASSWORD }} | sudo -kS docker compose up -d
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose up -d
       - name: 🚧 Update GitHub deployment status.
         uses: bobheadxi/deployments@v1
         if: always()
