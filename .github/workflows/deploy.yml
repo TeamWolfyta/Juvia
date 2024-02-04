@@ -49,7 +49,7 @@ jobs:
         with:
           host: ${{ env.SSH_HOST }}
           username: ${{ env.SSH_USER }}
-          key: ${{ env.SSH_PRIVATE_KEY }}
+          key: "${{ env.SSH_PRIVATE_KEY }}"
           port: 22
           script: |
             cd ~/juvia
