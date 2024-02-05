@@ -43,6 +43,7 @@ jobs:
             echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose down
             git pull
             echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose up -d
+          script_stop: true
       - name: Update GitHub deployment status
         uses: bobheadxi/deployments@v1
         if: always()
