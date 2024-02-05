@@ -25,13 +25,13 @@ jobs:
     environment: Live
     steps:
       - id: deployment
-        name: 🚧 Create GitHub deployment.
+        name: Create GitHub deployment
         uses: bobheadxi/deployments@v1
         with:
           env: Live
           step: start
           token: ${{ github.token }}
-      - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
+      - name: Deploy Compose stack to ${{ steps.deployment.outputs.env }}.
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -43,7 +43,7 @@ jobs:
             echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose down
             git pull
             echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose up -d
-      - name: 🚧 Update GitHub deployment status.
+      - name: Update GitHub deployment status
         uses: bobheadxi/deployments@v1
         if: always()
         with:
