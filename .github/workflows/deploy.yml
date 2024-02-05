@@ -22,13 +22,13 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: Live
     steps:
       - id: deployment
         name: 🚧 Create GitHub deployment.
         uses: bobheadxi/deployments@v1
         with:
-          env: production
+          env: Live
           step: start
           token: ${{ github.token }}
       - name: 📦 Deploy Docker-Compose stack to ${{ steps.deployment.outputs.env }}.
@@ -36,13 +36,13 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_USER_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/juvia
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose down
+            echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose down
             git pull
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -kS docker compose up -d
+            echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose up -d
       - name: 🚧 Update GitHub deployment status.
         uses: bobheadxi/deployments@v1
         if: always()
