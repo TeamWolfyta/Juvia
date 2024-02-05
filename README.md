@@ -4,16 +4,16 @@
 
 ## ✨ Features
 
-- [x] Auto deployment (Via [GitHub Actions](https://github.com/features/actions))
-- [x] Auto version updates (Via [Renovate](https://renovatebot.com))
+- [x] Auto deployment ([GitHub Actions](https://github.com/features/actions))
+- [x] Auto version updates ([Renovate](https://renovatebot.com))
 
 ## 📦 Services
 
-- [x] [PGAdmin](./services/pgadmin.yaml)
-- [x] [Portainer](./services/portainer.yaml)
-- [x] [Traefik V2](./services/traefik.yaml)
-  - Plugins: [Cloudflarewarp](https://github.com/BetterCorp/cloudflarewarp)
-- [x] [Traefik WhoAmI](./services/whoami.yaml)
+- [x] dpage/pgadmin4 ([Compose](./services/pgadmin.yaml), [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4))
+- [x] portainer/portainer-ee ([Compose](./services/portainer.yaml), [Docker Hub](https://hub.docker.com/r/portainer/portainer-ee))
+- [x] traefik ([Compose](./services/traefik.yaml), [Docker Hub](https://hub.docker.com/_/traefik))
+  - [x] bettercorp/cloudflarewarp ([GitHub](https://github.com/BetterCorp/cloudflarewarp))
+- [x] traefik/whoami ([Compose](./services/whoami.yaml), [Docker Hub](https://hub.docker.com/r/traefik/whoami))
 
 ## ❓ Why is the repo named Juvia?
 
