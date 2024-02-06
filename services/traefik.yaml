@@ -27,7 +27,7 @@ services:
       - --experimental.plugins.cloudflarewarp.modulename=github.com/BetterCorp/cloudflarewarp
       - --experimental.plugins.cloudflarewarp.version=v1.3.3
       # Logs
-      - --log.level=WARN
+      - --log.level=ERROR
       - --log.filePath=/logs/traefik.log
       - --accesslog=true
       - --accesslog.filepath=/logs/access.log
