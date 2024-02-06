@@ -7,8 +7,9 @@ on:
     paths:
       - config/**
       - services/**
-      - docker-compose.yml
-      - .github/workflows/deploy.yml
+      - docker-compose.networks.yaml
+      - docker-compose.yaml
+      - .github/workflows/deploy.yaml
   workflow_dispatch: {}
 
 concurrency:
