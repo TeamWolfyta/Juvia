@@ -52,7 +52,6 @@ services:
       traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_BASICAUTH_USERS:?}
       traefik.http.middlewares.traefik-auth.basicauth.removeHeader: true
     networks:
-      - cloudflared
       - traefik
     ports:
       - ${TRAEFIK_HTTP_PORT:?}:${TRAEFIK_HTTP_PORT:?}
