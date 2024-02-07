@@ -4,6 +4,10 @@ version: "3.8"
 
 services:
   whoami:
+    environment:
+      PUID: ${PUID:?}
+      GUID: ${GUID:?}
+      TZ: ${TZ:?}
     image: traefik/whoami:v1.10.1
     labels:
       traefik.enable: true
