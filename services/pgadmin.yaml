@@ -5,6 +5,9 @@ version: "3.8"
 services:
   pgadmin:
     environment:
+      PUID: ${PUID:?}
+      GUID: ${GUID:?}
+      TZ: ${TZ:?}
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:?}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?}
     image: dpage/pgadmin4:8.2

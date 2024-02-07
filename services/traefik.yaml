@@ -39,6 +39,9 @@ services:
       - --global.checknewversion=false
       - --global.sendanonymoususage=false
     environment:
+      PUID: ${PUID:?}
+      GUID: ${GUID:?}
+      TZ: ${TZ:?}
       CF_API_EMAIL: ${TRAEFIK_CLOUDFLARE_API_EMAIL:?}
       CF_DNS_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
       CF_ZONE_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
