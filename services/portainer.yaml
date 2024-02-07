@@ -5,6 +5,9 @@ version: "3.8"
 services:
   portainer:
     environment:
+      PUID: ${PUID:?}
+      GUID: ${GUID:?}
+      TZ: ${TZ:?}
       PORTAINER_LICENSE_KEY: ${PORTAINER_LICENSE_KEY:?}
     image: portainer/portainer-ee:2.19.4
     labels:
