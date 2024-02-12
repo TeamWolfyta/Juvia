@@ -1,0 +1,83 @@
+repo_name: TeamWolfyta/Juvia
+report_id: c6d8d43da254f028d506abace313609c
+version: 0.1
+repo_type: Public
+timestamp: '2024-02-12T05:07:42+00:00'
+requested_by: TeamWolfyta
+provider: github
+branch: main
+detected_tools_count: 7
+tools:
+- name: Docker
+  description: Enterprise Container Platform for High-Velocity Innovation.
+  website_url: https://www.docker.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Virtual Machine Platforms & Containers
+  image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/docker-compose.yaml
+  detection_source: docker-compose.yaml
+  last_updated_by: TeamWolfyta
+  last_updated_on: 2024-02-03 17:36:41.000000000 Z
+- name: Docker Compose
+  description: Define and run multi-container applications with Docker
+  website_url: https://github.com/docker/compose
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Container Tools
+  image_url: https://img.stackshare.io/service/3136/docker-compose.png
+  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/docker-compose.yaml
+  detection_source: docker-compose.yaml
+  last_updated_by: TeamWolfyta
+  last_updated_on: 2024-02-03 17:36:41.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/TeamWolfyta/Juvia
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/.github/workflows/deploy.yaml
+  detection_source: ".github/workflows/deploy.yaml"
+  last_updated_by: TeamWolfyta
+  last_updated_on: 2024-02-05 19:31:11.000000000 Z
+- name: Portainer
+  description: Open source tool for managing containerized applications
+  website_url: https://www.portainer.io/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Container Tools
+  image_url: https://img.stackshare.io/service/5926/default_527bb25deb193777b18200fb5c25b82418df885d.jpg
+  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/docker-compose.yaml
+  detection_source: docker-compose.yaml
+  last_updated_by: TeamWolfyta
+  last_updated_on: 2024-02-03 17:36:41.000000000 Z
+- name: Traefik
+  description: The Cloud Native Edge Router
+  website_url: https://traefik.io/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Load Balancer / Reverse Proxy
+  image_url: https://img.stackshare.io/service/5126/default_0a34be001ec8247c641508aa468564fb386bc50c.png
+  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/docker-compose.yaml
+  detection_source: docker-compose.yaml
+  last_updated_by: TeamWolfyta
+  last_updated_on: 2024-02-03 17:36:41.000000000 Z
