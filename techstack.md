@@ -34,22 +34,9 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [TeamWolfyta/Juvia](https://github.com/TeamWolfyta/Juvia)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|7<br/>Tools used|02/12/24 <br/>Report generated|
+|6<br/>Tools used|02/12/24 <br/>Report generated|
 |------|------|
 </div>
-
-## <img src='https://img.stackshare.io/databases.svg'/> Data (1)
-<table><tr>
-  <td align='center'>
-  <img width='36' height='36' src='https://img.stackshare.io/service/201/reB72Lh4.png' alt='Compose'>
-  <br>
-  <sub><a href="https://www.compose.io/">Compose</a></sub>
-  <br>
-  <sub></sub>
-</td>
-
-</tr>
-</table>
 
 ## <img src='https://img.stackshare.io/devops.svg'/> DevOps (6)
 <table><tr>
