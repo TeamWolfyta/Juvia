@@ -8,19 +8,6 @@ provider: github
 branch: main
 detected_tools_count: 7
 tools:
-- name: Compose
-  description: 'We host databases for busy devs: production-ready, cloud-hosted, open
-    source.'
-  website_url: https://www.compose.io/
-  open_source: false
-  hosted_saas: true
-  category: Data Stores
-  sub_category: MongoDB Hosting
-  image_url: https://img.stackshare.io/service/201/reB72Lh4.png
-  detection_source_url: https://github.com/TeamWolfyta/Juvia/blob/main/docker-compose.yaml
-  detection_source: docker-compose.yaml
-  last_updated_by: TeamWolfyta
-  last_updated_on: 2024-02-03 17:36:41.000000000 Z
 - name: Docker
   description: Enterprise Container Platform for High-Velocity Innovation.
   website_url: https://www.docker.com/
