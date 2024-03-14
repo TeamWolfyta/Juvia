@@ -31,9 +31,9 @@ fi
 command="$1"
 shift # Shift arguments to process additional options or services.
 
-docker_services=()
-docker_additional_options=()
-docker_envfile_option="--env-file $pwd/.env"
+docker_services=()                           # Initialize an empty array to hold docker service names.
+docker_additional_options=()                 # Initialize an empty array for additional docker command options.
+docker_envfile_option="--env-file $pwd/.env" # Define the environment file option for docker commands.
 
 # Parse command line arguments for services and additional docker options.
 while [[ $# -gt 0 ]]; do
