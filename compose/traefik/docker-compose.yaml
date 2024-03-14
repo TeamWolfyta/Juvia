@@ -55,7 +55,7 @@ services:
       traefik.enable: true
       traefik.http.routers.traefik.entrypoints: https
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: Host(`traefik.koneko.cloud.wolfyta.net`)
+      traefik.http.routers.traefik.rule: Host(`traefik.cloud.wolfyta.net`)
       traefik.http.services.traefik.loadbalancer.server.port: 8080
       # Middleware
       traefik.http.routers.traefik.middlewares: traefik-auth@docker
