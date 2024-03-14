@@ -1,16 +1,11 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - config/**
-      - services/**
-      - docker-compose.networks.yaml
-      - docker-compose.yaml
-      - .github/workflows/deploy.yaml
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: environment
 
 concurrency:
   cancel-in-progress: true
@@ -22,30 +17,29 @@ permissions:
 
 jobs:
   deploy:
+    name: Deploy to ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    environment: Live
+    environment: ${{ inputs.environment }}
     steps:
       - id: deployment
-        name: Create GitHub deployment
+        name: Create new GitHub deployment
         uses: bobheadxi/deployments@v1
         with:
-          env: Live
+          env: ${{ inputs.environment }}
           step: start
           token: ${{ github.token }}
-      - name: Deploy Compose stack to ${{ steps.deployment.outputs.env }}.
+      - name:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          username: ${{ secrets.SSH_USER_NAME }}
           key: ${{ secrets.SSH_USER_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/juvia
-            echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose down
-            git pull
-            echo ${{ secrets.SSH_USER_PASSWORD }} | sudo -kS docker compose up -d
+            cd ./juvia
+            ./scripts/juvia.sh deploy ${{ vars.DOCKER_SERVICES }}
           script_stop: true
-      - name: Update GitHub deployment status
+      - name: Update GitHub Deployment status for ${{ steps.deployment.outputs.env }}
         uses: bobheadxi/deployments@v1
         if: always()
         with:
