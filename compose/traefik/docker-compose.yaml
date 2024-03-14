@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
+name: juvia-traefik
+version: "3.8"
+
+networks:
+  frontend:
+    name: frontend
+    external: true
+
+services:
+  traefik:
+    command:
+      # Providers - Docker
+      - --providers.docker.exposedByDefault=false
+      - --providers.docker.network=frontend
+      # Entrypoints - HTTP
+      - --entrypoints.http.address=:80
+      - --entrypoints.http.http.redirections.entrypoint.to=https
+      - --entrypoints.http.http.redirections.entrypoint.scheme=https
+      - --entrypoints.http.http.redirections.entrypoint.permanent=true
+      # Entrypoints - HTTPS (Secure)
+      - --entrypoints.https.address=:443
+      - --entrypoints.https.http.tls.certresolver=letsencrypt
+      - --entrypoints.https.http.tls.domains[0].main=cloud.wolfyta.net
+      - --entrypoints.https.http.tls.domains[0].sans=*.cloud.wolfyta.net
+      # DO NOT NEED THIS AT THE MOMENT, MAYBE WILL NEVER NEED IT!
+      # - --entrypoints.https.http.tls.domains[1].main=koneko.cloud.wolfyta.net
+      # - --entrypoints.https.http.tls.domains[1].sans=*.koneko.cloud.wolfyta.net
+      # Certresolver - LetsEncrypt
+      - --certificatesresolvers.letsencrypt.acme.email=${TRAEFIK_ACME_EMAIL:?}
+      - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.letsencrypt.acme.caserver=${TRAEFIK_ACME_CASERVER:?}
+      # Logs
+      - --log.level=${TRAEFIK_LOG_LEVEL:?}
+      - --log.filepath=/logs/traefik.log
+      - --accesslog=true
+      - --accesslog.filepath=/logs/access.log
+      # Dashboard
+      - --ping
+      - --api=true
+      - --api.dashboard=true
+      # Global
+      - --global.checknewversion=false
+      - --global.sendanonymoususage=false
+    container_name: traefik
+    environment:
+      TZ: UTC
+      CF_API_EMAIL: ${TRAEFIK_CLOUDFLARE_API_EMAIL:?}
+      CF_DNS_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
+      CF_ZONE_API_TOKEN: ${TRAEFIK_CLOUDFLARE_API_TOKEN:?}
+    image: traefik:v2.10.7
+    labels:
+      traefik.enable: true
+      traefik.http.routers.traefik.entrypoints: https
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.rule: Host(`traefik.koneko.cloud.wolfyta.net`)
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
+      # Middleware
+      traefik.http.routers.traefik.middlewares: traefik-auth@docker
+      traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_DASHBOARD_BASICAUTH_USERS:?}
+    networks:
+      - frontend
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - /srv/juvia/traefik/data:/data
+      - /srv/juvia/traefik/logs:/logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro

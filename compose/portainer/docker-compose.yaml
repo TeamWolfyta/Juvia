@@ -1,23 +1,28 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 
+name: juvia-portainer
 version: "3.8"
+
+networks:
+  frontend:
+    name: frontend
+    external: true
 
 services:
   portainer:
+    container_name: portainer
     environment:
-      PUID: ${PUID:?}
-      GUID: ${GUID:?}
-      TZ: ${TZ:?}
+      TZ: UTC
       PORTAINER_LICENSE_KEY: ${PORTAINER_LICENSE_KEY:?}
     image: portainer/portainer-ee:2.19.4
     labels:
       traefik.enable: true
       traefik.http.routers.portainer.entrypoints: https
-      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?}`)
+      traefik.http.routers.portainer.rule: Host(`portainer.cloud.wolfyta.net`)
       traefik.http.services.portainer.loadbalancer.server.port: 9000
     networks:
-      - traefik
-    restart: on-failure
+      - frontend
+    restart: unless-stopped
     volumes:
+      - /srv/juvia/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ../data/portainer:/data

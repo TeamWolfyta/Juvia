@@ -1,18 +1,23 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 
+name: juvia-whoami
 version: "3.8"
+
+networks:
+  frontend:
+    name: frontend
+    external: true
 
 services:
   whoami:
+    container_name: whoami
     environment:
-      PUID: ${PUID:?}
-      GUID: ${GUID:?}
-      TZ: ${TZ:?}
+      TZ: UTC
     image: traefik/whoami:v1.10.1
     labels:
       traefik.enable: true
       traefik.http.routers.whoami.entrypoints: https
-      traefik.http.routers.whoami.rule: Host(`whoami.${DOMAIN:?}`)
+      traefik.http.routers.whoami.rule: Host(`whoami.cloud.wolfyta.net`)
     networks:
-      - traefik
-    restart: on-failure
+      - frontend
+    restart: unless-stopped
