@@ -63,5 +63,5 @@ if [[ $command == "deploy" ]]; then
   docker compose $docker_generated_options up -d
 else
   # Execute docker compose with generated options and the specified command.
-  docker compose $docker_generated_options $command ${docker_additional_options[*]}
+  docker compose $docker_generated_options $command ${docker_additional_options[@]}
 fi
