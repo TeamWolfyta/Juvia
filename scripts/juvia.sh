@@ -5,10 +5,12 @@ set -e
 # Ensure the script exits if any command in a pipeline fails.
 set -o pipefail
 
+pwd=$(pwd)
+
 # Function to transform a single input into a docker-compose file option.
 transform_to_docker_option() {
   # Constructs a docker-compose file path with the provided argument.
-  echo "-f ./compose/${1}/docker-compose.yaml"
+  echo "-f $pwd/compose/${1}/docker-compose.yaml"
 }
 
 # Function to transform all input arguments into docker-compose file options.
@@ -31,9 +33,8 @@ fi
 command="$1"
 shift # Shift arguments to process additional options or services.
 
-docker_services=()                           # Initialize an empty array to hold docker service names.
-docker_additional_options=()                 # Initialize an empty array for additional docker command options.
-docker_envfile_option="--env-file $pwd/.env" # Define the environment file option for docker commands.
+docker_services=()           # Initialize an empty array to hold docker service names.
+docker_additional_options=() # Initialize an empty array for additional docker command options.
 
 # Parse command line arguments for services and additional docker options.
 while [[ $# -gt 0 ]]; do
@@ -52,17 +53,20 @@ done
 # Generate docker options from the services array.
 docker_generated_options=$(transform_to_docker_options "${docker_services[@]}")
 
+# Define the environment file option for docker commands.
+docker_generated_options+="--env-file $pwd/.env"
+
 # Deploy command logic.
 if [[ $command == "deploy" ]]; then
   # Stop and remove containers, networks, volumes, and images created by `up`.
-  docker compose $docker_envfile_option $docker_generated_options down
+  docker compose $docker_generated_options down
 
   # Fetch the newest version of the code from the repository.
   git pull
 
   # Build, (re)create, start, and attach to containers for a service in detached mode.
-  docker compose $docker_envfile_option $docker_generated_options up -d
+  docker compose $docker_generated_options up -d
 else
   # Execute docker compose with generated options and the specified command.
-  docker compose $docker_envfile_option $docker_generated_options $command ${docker_additional_options[@]}
+  docker compose $docker_generated_options $command ${docker_additional_options[@]}
 fi
