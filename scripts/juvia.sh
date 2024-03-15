@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Generate docker options from the services array and define the environment file option for docker commands.
-docker_generated_options=""--env-file $pwd/.env" $(transform_to_docker_options "${docker_services[@]}")"
+docker_generated_options="--env-file $pwd/.env $(transform_to_docker_options "${docker_services[@]}")"
 
 # Deploy command logic.
 if [[ $command == "deploy" ]]; then
