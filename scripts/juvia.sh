@@ -1,69 +1,137 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status.
-set -e
-# Ensure the script exits if any command in a pipeline fails.
-set -o pipefail
+set -eo pipefail
 
-pwd=$(pwd)
+# Define colors for better readability
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+NC='\033[0m' # No Color
 
-# Function to transform a single input into a docker-compose file option.
-transform_to_docker_option() {
-  # Constructs a docker-compose file path with the provided argument.
-  echo "-f $pwd/compose/${1}/docker-compose.yaml"
+# ASCII art
+cat <<"EOF"
+    /$$$$$                      /$$
+   |__  $$                     |__/
+      | $$ /$$   /$$ /$$    /$$ /$$  /$$$$$$
+      | $$| $$  | $$|  $$  /$$/| $$ |____  $$
+ /$$  | $$| $$  | $$ \  $$/$$/ | $$  /$$$$$$$
+| $$  | $$| $$  | $$  \  $$$/  | $$ /$$__  $$
+|  $$$$$$/|  $$$$$$/   \  $/   | $$|  $$$$$$$
+ \______/  \______/     \_/    |__/ \_______/
+
+EOF
+
+# Get current working directory
+working_directory="$(pwd)"
+compose_directory="$working_directory/compose"
+
+environment_file_path="$working_directory/.env"
+relative_environment_file_path="${environment_file_path#$working_directory/}" # Calculate relative path
+
+# Array to store services with missing docker-compose.yaml files or non-existing services
+invalid_services=()
+
+# Function to check if a directory exists and contains files
+check_directory() {
+  local directory="$1"
+  [[ -e "$directory" && -d "$directory" && "$(find "$directory" -maxdepth 2 -type f -name "docker-compose.yaml")" ]]
 }
 
-# Function to transform all input arguments into docker-compose file options.
-transform_to_docker_options() {
-  local output=() # Initialize an empty array for the docker options.
-  for input in "$@"; do
-    # Transform each input argument and add it to the output array.
-    output+=("$(transform_to_docker_option "$input")")
+# Function to execute a Docker command for a specific service
+execute_docker_command() {
+  local command="$1"
+  local service="$2"
+  local flags=("${@:3}")
+
+  compose_file_path="$compose_directory/$service/docker-compose.yaml"
+  relative_compose_file_path="${compose_file_path#$working_directory/}" # Calculate relative path
+
+  if [[ -f "$compose_file_path" ]]; then
+    echo -e "${GREEN}Executing:${NC} docker compose --env-file \"${YELLOW}$relative_environment_file_path${NC}\" -f \"${YELLOW}$relative_compose_file_path${NC}\" ${PURPLE}$command${NC} ${flags[@]}"
+    docker compose --env-file \"$environment_file_path\" -f \"$compose_file_path\" $command ${flags[@]}
+    echo -e "${GREEN}Completed:${NC} ${PURPLE}$command${NC} for service '${BLUE}$service${NC}'"
+  else
+    echo -e "${RED}Error:${NC} Service '${BLUE}$service${NC}' does not exist or is missing docker-compose.yaml!" >&2
+    invalid_services+=("$service")
+  fi
+}
+
+# Function to execute Docker commands for specific services
+execute_docker_commands() {
+  local command="$1"
+  local services=()
+  local flags=()
+
+  for arg in "${@:2}"; do
+    if [[ "$arg" == -* ]]; then
+      flags+=("$arg")
+    else
+      services+=("$arg")
+    fi
   done
-  echo "${output[@]}" # Output the array elements as a single string.
+
+  for service in "${services[@]}"; do
+    # Skip services that are known to be invalid
+    if grep -wFq "$service" <<<"${invalid_services[*]}"; then
+      continue
+    fi
+
+    execute_docker_command "$command" "$service" "${flags[@]}"
+  done
 }
 
-# Check if any arguments were provided.
-if [ $# -eq 0 ]; then
-  echo "No arguments provided. Exiting..."
-  echo "Usage: $0 <service_name>..."
+# Help function
+help() {
+  echo -e "
+${YELLOW}Usage:${NC}
+   $0 [COMMAND] [SERVICES] [FLAGS]
+
+${YELLOW}Commands:${NC}
+  ${GREEN}deploy${NC}    - Yes. - Link
+  ${GREEN}*${NC}         - Catch all that is passed directly to 'docker compose'.
+
+${YELLOW}Services:${NC}
+  Specify one or more service names defined in the compose directory.
+
+${YELLOW}Flags:${NC}
+  Any flags supported by the 'docker compose' command can be passed.
+"
+}
+
+# Main execution starts here
+
+# Check if compose directory exists and contains files
+check_directory "$compose_directory" || {
+  echo -e "${RED}Error:${NC} Compose folder '${YELLOW}$compose_directory${NC}' does not exist or does not contain any docker-compose.yaml files!" >&2
   exit 1
-fi
+}
 
+# Check if environment file exists
+[[ -f "$environment_file_path" ]] || {
+  echo -e "${RED}Error:${NC} Environment file '${YELLOW}$environment_file_path${NC}' does not exist!" >&2
+  exit 1
+}
+
+# Extract command
 command="$1"
-shift # Shift arguments to process additional options or services.
+shift
 
-docker_services=()           # Initialize an empty array to hold docker service names.
-docker_additional_options=() # Initialize an empty array for additional docker command options.
-
-# Parse command line arguments for services and additional docker options.
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-  -*)
-    docker_additional_options+=("$1") # Add option to additional options array.
-    shift
-    ;;
-  *)
-    docker_services+=("$1") # Add service to services array.
-    shift
-    ;;
-  esac
-done
-
-# Generate docker options from the services array and define the environment file option for docker commands.
-docker_generated_options="--env-file $pwd/.env $(transform_to_docker_options "${docker_services[@]}")"
-
-# Deploy command logic.
-if [[ $command == "deploy" ]]; then
-  # Stop and remove containers, networks, volumes, and images created by `up`.
-  docker compose $docker_generated_options down
-
-  # Fetch the newest version of the code from the repository.
-  git pull
-
-  # Build, (re)create, start, and attach to containers for a service in detached mode.
-  docker compose $docker_generated_options up -d
-else
-  # Execute docker compose with generated options and the specified command.
-  docker compose $docker_generated_options $command ${docker_additional_options[@]}
-fi
+# Execute Docker commands based on the provided command
+case "$command" in
+help)
+  help
+  exit 0
+  ;;
+deploy)
+  execute_docker_commands down "$@" &&
+    git pull &&
+    execute_docker_commands up -d "$@"
+  exit 0
+  ;;
+*)
+  execute_docker_commands "$command" "$@"
+  exit 0
+  ;;
+esac
