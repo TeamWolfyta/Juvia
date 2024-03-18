@@ -50,7 +50,7 @@ execute_docker_command() {
 
   if [[ -f "$compose_file_path" ]]; then
     echo -e "${GREEN}Executing:${NC} docker compose --env-file \"${YELLOW}$relative_environment_file_path${NC}\" -f \"${YELLOW}$relative_compose_file_path${NC}\" ${PURPLE}$command${NC} ${flags[@]}"
-    docker compose --env-file \"$environment_file_path\" -f \"$compose_file_path\" $command ${flags[@]}
+    docker compose --env-file $environment_file_path -f $compose_file_path $command ${flags[@]}
     echo -e "${GREEN}Completed:${NC} ${PURPLE}$command${NC} for service '${BLUE}$service${NC}'"
   else
     echo -e "${RED}Error:${NC} Service '${BLUE}$service${NC}' does not exist or is missing docker-compose.yaml!" >&2
