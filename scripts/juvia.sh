@@ -114,6 +114,12 @@ check_directory "$compose_directory" || {
   exit 1
 }
 
+# Check if arguments are provided
+if [ $# -eq 0 ]; then
+  echo -e "${RED}Error:${NC} No arguments provided. Please provide a command and service(s)." >&2
+  exit 1
+fi
+
 # Extract command
 command="$1"
 shift
