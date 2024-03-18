@@ -1,6 +1,6 @@
 ![Juvia](./.github/assets/banner-01.png)
 
-![GitHub deployments](https://img.shields.io/github/deployments/TeamWolfyta/Juvia/Live?style=flat-square&label=Live%20Deployment) [![Discord](https://img.shields.io/discord/645356291748921377?style=flat-square&label=Discord&color=%235865F2)](https://discord.gg/eYkJdhTvvG)
+![GitHub License](https://img.shields.io/github/license/TeamWolfyta/Juvia?style=flat-square) [![Discord](https://img.shields.io/discord/645356291748921377?style=flat-square&label=Discord&color=%235865F2)](https://discord.gg/eYkJdhTvvG)
 
 ## 🪙 License
 
