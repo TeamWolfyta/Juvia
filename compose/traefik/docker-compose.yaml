@@ -24,9 +24,6 @@ services:
       - --entrypoints.https.http.tls.certresolver=letsencrypt
       - --entrypoints.https.http.tls.domains[0].main=cloud.wolfyta.net
       - --entrypoints.https.http.tls.domains[0].sans=*.cloud.wolfyta.net
-      # DO NOT NEED THIS AT THE MOMENT, MAYBE WILL NEVER NEED IT!
-      # - --entrypoints.https.http.tls.domains[1].main=koneko.cloud.wolfyta.net
-      # - --entrypoints.https.http.tls.domains[1].sans=*.koneko.cloud.wolfyta.net
       # Certresolver - LetsEncrypt
       - --certificatesresolvers.letsencrypt.acme.email=${TRAEFIK_ACME_EMAIL:?}
       - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
