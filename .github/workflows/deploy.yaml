@@ -28,16 +28,14 @@ jobs:
           env: ${{ inputs.environment }}
           step: start
           token: ${{ github.token }}
-      - name:
+      - name: Deploy Compose stack to ${{ steps.deployment.outputs.env }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER_NAME }}
           key: ${{ secrets.SSH_USER_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ./juvia
-            ./scripts/juvia.sh deploy ${{ vars.DOCKER_SERVICES }}
+          script: cd ./juvia && ./scripts/juvia.sh deploy ${{ vars.DOCKER_SERVICES }}
           script_stop: true
       - name: Update GitHub Deployment status for ${{ steps.deployment.outputs.env }}
         uses: bobheadxi/deployments@v1
